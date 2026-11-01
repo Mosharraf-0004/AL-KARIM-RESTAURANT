@@ -1,0 +1,274 @@
+<div class="container order-page-container">
+  <!-- Case 1: Order Placed Successfully -->
+  <div class="row" ng-if="orderCtrl.orderPlaced">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="order-card order-placed-card text-center">
+        <div class="order-placed-icon">
+          <span class="glyphicon glyphicon-ok-circle"></span>
+        </div>
+        <h2 style="color: #114b3b; font-weight: bold; margin-top: 0">
+          Order Placed Successfully!
+        </h2>
+        <p style="font-size: 16px; color: #555">
+          Thank you, <strong>{{orderCtrl.lastOrder.customer.name || 'Valued Customer'}}</strong>! Your order has been sent to our kitchen.
+        </p>
+
+        <div
+          style="
+            background: #f7fdf9;
+            border: 1px dashed #557c3e;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+          "
+        >
+          <div class="row">
+            <div class="col-sm-6">
+              <p><strong>Order ID:</strong> #{{orderCtrl.lastOrder.id}}</p>
+              <p>
+                <strong>Delivery To:</strong>
+                {{orderCtrl.lastOrder.customer.address}}
+              </p>
+              <p>
+                <strong>Contact Phone:</strong>
+                {{orderCtrl.lastOrder.customer.phone || '821-035-900'}}
+              </p>
+            </div>
+            <div class="col-sm-6 text-right-sm">
+              <p>
+                <strong>Total Amount:</strong>
+                <span style="font-size: 18px; color: #114b3b; font-weight: bold">
+                  {{orderCtrl.lastOrder.total | currency:"₹"}}
+                </span>
+              </p>
+              <p>
+                <strong>Estimated Delivery:</strong>
+                <span class="label label-success">30 - 45 Minutes</span>
+              </p>
+              <p><strong>Payment Method:</strong> Cash on Delivery (COD)</p>
+            </div>
+          </div>
+
+          <hr style="margin: 10px 0" />
+          <h4 style="font-weight: bold; margin-bottom: 8px">Items Ordered:</h4>
+          <ul style="padding-left: 20px; margin-bottom: 0">
+            <li ng-repeat="item in orderCtrl.lastOrder.items">
+              <strong>{{item.name}}</strong> ({{item.portion}}) &times; {{item.quantity}}
+              — {{item.price * item.quantity | currency:"₹"}}
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top: 25px">
+          <a ui-sref="public.menu" class="btn btn-success btn-lg" ng-click="orderCtrl.resetOrder()">
+            <span class="glyphicon glyphicon-cutlery"></span> Order More Food
+          </a>
+          <a ui-sref="public.home" class="btn btn-default btn-lg" style="margin-left: 10px" ng-click="orderCtrl.resetOrder()">
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 2: Empty Order Cart -->
+  <div class="row" ng-if="!orderCtrl.orderPlaced && orderCtrl.getItems().length === 0">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="order-card empty-order-card">
+        <div class="empty-order-icon">
+          <span class="glyphicon glyphicon-shopping-cart"></span>
+        </div>
+        <h2 style="color: #222; font-weight: bold; margin-top: 0">
+          Your Order is Currently Empty
+        </h2>
+        <p style="font-size: 16px; color: #666; max-width: 480px; margin: 10px auto 25px">
+          You haven't added any dishes yet. Browse our delicious Halal menu and click the
+          <strong>+ ADD</strong> icon on any dish!
+        </p>
+        <a ui-sref="public.menu" class="btn btn-success btn-lg" style="background-color: #114b3b; border-color: #114b3b;">
+          <span class="glyphicon glyphicon-cutlery"></span> Explore Menu & Order Dishes
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 3: Items in Order Cart -->
+  <div class="row" ng-if="!orderCtrl.orderPlaced && orderCtrl.getItems().length > 0">
+    <div class="col-xs-12">
+      <h2 style="font-family: 'Oxygen', sans-serif; font-weight: bold; color: #114b3b; margin-top: 0; margin-bottom: 20px;">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Your Order
+        <small style="color: #666">({{orderCtrl.getTotalCount()}} items)</small>
+      </h2>
+    </div>
+
+    <!-- Left Column: Ordered Items List -->
+    <div class="col-md-7">
+      <div class="order-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eef2f0; padding-bottom: 10px; margin-bottom: 15px;">
+          <h3 class="order-card-title" style="border-bottom: none; margin: 0; padding: 0;">
+            Dishes Added
+          </h3>
+          <button
+            type="button"
+            class="btn btn-xs btn-default"
+            ng-click="orderCtrl.clearOrder()"
+            title="Clear all dishes"
+          >
+            <span class="glyphicon glyphicon-trash text-danger"></span> Clear All
+          </button>
+        </div>
+
+        <div class="order-item-row" ng-repeat="item in orderCtrl.getItems()">
+          <div class="order-item-info">
+            <div class="order-item-name">{{item.name}}</div>
+            <div class="order-item-portion">
+              <span class="label label-default">{{item.short_name}}</span>
+              <span style="margin-left: 5px">{{item.portion}}</span>
+            </div>
+            <div class="order-item-price">
+              {{item.price | currency:"₹"}} per item
+            </div>
+          </div>
+
+          <div class="order-item-actions">
+            <div class="food-stepper">
+              <button
+                type="button"
+                class="stepper-btn minus"
+                ng-click="orderCtrl.decreaseItem(item)"
+                title="Decrease"
+              >
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+              <span class="stepper-count">{{item.quantity}}</span>
+              <button
+                type="button"
+                class="stepper-btn plus"
+                ng-click="orderCtrl.increaseItem(item)"
+                title="Increase"
+              >
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+
+            <div class="order-item-subtotal">
+              {{item.price * item.quantity | currency:"₹"}}
+            </div>
+
+            <button
+              type="button"
+              class="btn-item-remove"
+              ng-click="orderCtrl.removeItem(item.short_name)"
+              title="Remove item"
+            >
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <a ui-sref="public.menu" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus"></span> Add More Dishes
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Delivery Details & Bill Summary -->
+    <div class="col-md-5">
+      <!-- Delivery Address Form -->
+      <div class="order-card">
+        <h3 class="order-card-title">
+          <span class="glyphicon glyphicon-map-marker"></span> Delivery Information
+        </h3>
+
+        <form name="orderForm" novalidate ng-submit="orderCtrl.placeOrder()">
+          <div class="form-group">
+            <label for="custName">Your Name *</label>
+            <input
+              type="text"
+              id="custName"
+              class="form-control"
+              placeholder="e.g. Rahul Sharma"
+              ng-model="orderCtrl.customer.name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="custPhone">Phone Number *</label>
+            <input
+              type="tel"
+              id="custPhone"
+              class="form-control"
+              placeholder="e.g. 821-035-900"
+              ng-model="orderCtrl.customer.phone"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="custAddress">Delivery Address *</label>
+            <textarea
+              id="custAddress"
+              rows="2"
+              class="form-control"
+              placeholder="House/Street, Clock Tower, Lake Town, Kolkata..."
+              ng-model="orderCtrl.customer.address"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="custNotes">Special Instructions (Optional)</label>
+            <input
+              type="text"
+              id="custNotes"
+              class="form-control"
+              placeholder="e.g. Less spicy, call before delivery"
+              ng-model="orderCtrl.customer.notes"
+            />
+          </div>
+
+          <!-- Bill Summary Card -->
+          <div style="margin-top: 25px; padding-top: 15px; border-top: 2px solid #eef2f0;">
+            <h4 style="font-weight: bold; color: #114b3b; margin-bottom: 12px;">Bill Summary</h4>
+
+            <div class="bill-row">
+              <span>Item Total ({{orderCtrl.getTotalCount()}} items)</span>
+              <span>{{orderCtrl.getTotalAmount() | currency:"₹"}}</span>
+            </div>
+
+            <div class="bill-row">
+              <span>Delivery Charges</span>
+              <span class="text-success" style="font-weight: bold;">FREE</span>
+            </div>
+
+            <div class="bill-row">
+              <span>Restaurant Packaging & Taxes</span>
+              <span>₹0.00</span>
+            </div>
+
+            <div class="bill-row total-row">
+              <span>To Pay</span>
+              <span>{{orderCtrl.getTotalAmount() | currency:"₹"}}</span>
+            </div>
+
+            <div style="margin-top: 20px;">
+              <button
+                type="submit"
+                class="btn btn-success btn-lg btn-block"
+                style="background-color: #114b3b; border-color: #114b3b; font-weight: bold;"
+                ng-disabled="orderForm.$invalid"
+              >
+                Place Order ({{orderCtrl.getTotalAmount() | currency:"₹"}})
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

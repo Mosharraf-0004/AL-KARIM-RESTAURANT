@@ -1,0 +1,63 @@
+<div class="menu-item-tile col-md-6">
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="menu-item-photo">
+        <div class="menu-item-code">{{$ctrl.menuItem.short_name}}</div>
+
+        <!-- Food App / Zepto Style Add & Stepper Control in Top-Right Corner -->
+        <div class="dish-add-wrapper">
+          <button
+            type="button"
+            class="food-add-btn"
+            ng-if="$ctrl.getQuantity() === 0"
+            ng-click="$ctrl.addItem($event)"
+            title="Add to Order"
+          >
+            <span class="glyphicon glyphicon-plus"></span> ADD
+          </button>
+
+          <div class="food-stepper" ng-if="$ctrl.getQuantity() > 0">
+            <button
+              type="button"
+              class="stepper-btn minus"
+              ng-click="$ctrl.decreaseItem($event)"
+              title="Decrease quantity"
+            >
+              <span class="glyphicon glyphicon-minus"></span>
+            </button>
+            <span class="stepper-count">{{$ctrl.getQuantity()}}</span>
+            <button
+              type="button"
+              class="stepper-btn plus"
+              ng-click="$ctrl.addItem($event)"
+              title="Add more"
+            >
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </div>
+        </div>
+
+        <img
+          class="img-responsive"
+          width="250"
+          height="150"
+          ng-src="{{$ctrl.basePath}}/images/{{$ctrl.menuItem.short_name}}.jpg"
+          alt="{{$ctrl.menuItem.name}}"
+          onerror="this.closest('.menu-item-tile').style.display='none'"
+        />
+      </div>
+      <div class="menu-item-price">
+        {{$ctrl.menuItem.price_small | currency:"₹"}}<span>
+          {{$ctrl.menuItem.small_portion_name}}</span
+        >
+        {{$ctrl.menuItem.price_large | currency:"₹"}}
+        <span>{{$ctrl.menuItem.large_portion_name}}</span>
+      </div>
+    </div>
+    <div class="menu-item-description col-sm-7">
+      <h3 class="menu-item-title">{{$ctrl.menuItem.name}}</h3>
+      <p class="menu-item-details">{{$ctrl.menuItem.description}}</p>
+    </div>
+  </div>
+  <hr class="visible-xs" />
+</div>

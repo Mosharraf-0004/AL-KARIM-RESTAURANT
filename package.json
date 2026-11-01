@@ -1,0 +1,14 @@
+{
+  "name": "angularjs-restaurant-website",
+  "version": "1.0.0",
+  "description": "Al Karim Restaurant Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/ --ignore=node_modules",
+    "start": "live-server --port=3000 --open=/ --ignore=node_modules",
+    "serve": "live-server --port=3000 --open=/ --ignore=node_modules"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

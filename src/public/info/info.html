@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Registered -->
+      <form
+        name="userInfo"
+        class="form-horizontal"
+        ng-if="infoCtrl.userPreferences"
+      >
+        <div class="form-group">
+          <label class="col-sm-4 control-label">First Name:</label>
+          <div class="col-sm-8">
+            <p class="form-control-static">
+              {{infoCtrl.userPreferences.firstName}}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Last Name:</label>
+          <div class="col-sm-8">
+            <p class="form-control-static">
+              {{infoCtrl.userPreferences.lastName}}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Email:</label>
+          <div class="col-sm-8">
+            <p class="form-control-static">
+              {{infoCtrl.userPreferences.email}}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Phone:</label>
+          <div class="col-sm-8">
+            <p class="form-control-static">
+              {{infoCtrl.userPreferences.phone}}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Favorite Dish:</label>
+          <div class="col-sm-8">
+            <menu-item menu-item="infoCtrl.menuItem"></menu-item>
+          </div>
+        </div>
+      </form>
+
+      <!-- No preference -->
+      <form class="form-horizontal" ng-if="!infoCtrl.userPreferences">
+        <p>Not Signed Up Yet.</p>
+        <a ui-sref="public.signup">Sign Up Now!</a>
+      </form>
+    </div>
+  </div>
+</div>

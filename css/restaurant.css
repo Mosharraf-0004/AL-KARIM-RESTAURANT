@@ -1,0 +1,540 @@
+body {
+  font-size: 16px;
+  color: #222222;
+  background: linear-gradient(180deg, #f5efe2 0%, #f4d6a0 100%);
+  font-family: "Oxygen", sans-serif;
+}
+
+.initial-loading {
+  margin-top: 60px;
+}
+
+/** HEADER **/
+#header-nav {
+  background: linear-gradient(90deg, #114b3b 0%, #1d6b4e 50%, #c89b3c 100%);
+  border-radius: 0;
+  border: 0;
+  box-shadow: 0 2px 10px rgba(17, 75, 59, 0.3);
+}
+
+#logo-img {
+  background: url("../images/restaurant-logo_large.png") no-repeat;
+  width: 150px;
+  height: 150px;
+  margin: 10px 15px 10px 0;
+}
+
+.navbar-brand {
+  padding-top: 25px;
+}
+
+.navbar-brand h1 {
+  /* Restaurant name */
+  font-family: "Lora", serif;
+  color: #f8f3ea;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35);
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 0.75;
+}
+
+.navbar-brand a:hover,
+.navbar-brand a:focus {
+  text-decoration: none;
+}
+
+.navbar-brand p {
+  /* Kosher cert */
+  color: #000;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  margin-top: 15px;
+}
+
+.navbar-brand p span {
+  /* Star-K */
+  vertical-align: middle;
+}
+
+#nav-list {
+  margin-top: 10px;
+}
+
+#nav-list a {
+  color: #fff7e8;
+  text-align: center;
+  font-weight: 600;
+}
+
+#nav-list a:hover {
+  background: #e7e7e7;
+}
+
+#nav-list a span {
+  font-size: 1.8em;
+}
+
+#phone {
+  margin-top: 5px;
+}
+
+#phone a {
+  /* Phone number */
+  text-align: right;
+  padding-bottom: 0;
+}
+
+#phone div {
+  /* We Deliver */
+  color: #f4d6a0;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.navbar-header button.navbar-toggle,
+.navbar-header .icon-bar {
+  border: 1px solid #61122f;
+}
+
+.navbar-header button.navbar-toggle {
+  clear: both;
+  margin-top: -30px;
+}
+
+/* END HEADER */
+
+/* FOOTER */
+.panel-footer {
+  margin-top: 30px;
+  padding-top: 35px;
+  padding-bottom: 30px;
+  background: linear-gradient(180deg, #122d25 0%, #0d201b 100%);
+  border-top: 0;
+  color: #f8f3ea;
+}
+
+.panel-footer div.row {
+  margin-bottom: 35px;
+}
+
+#hours,
+#address {
+  line-height: 2;
+}
+
+#hours > span,
+#address > span {
+  font-size: 1.3em;
+}
+
+#address p {
+  color: #557c3e;
+  font-size: 0.8em;
+  line-height: 1.8;
+}
+
+#testimonials {
+  font-style: italic;
+}
+
+#testimonials p:nth-child(2) {
+  margin-top: 25px;
+}
+
+a[ui-sref="admin.auth"] {
+  color: #fff;
+}
+
+/* END FOOTER */
+
+/********** Medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Header */
+  #logo-img {
+    background: url("../images/restaurant-logo_medium.png") no-repeat;
+    width: 100px;
+    height: 100px;
+    margin: 5px 5px 5px 0;
+  }
+
+  /* End Header */
+}
+
+/********** Extra small devices only **********/
+@media (max-width: 767px) {
+  /* Header */
+  .navbar-brand {
+    padding-top: 10px;
+    height: 80px;
+  }
+
+  .navbar-brand h1 {
+    /* Restaurant name */
+    padding-top: 10px;
+    font-size: 5vw;
+    /* 1vw = 1% of viewport width */
+  }
+
+  .navbar-brand p {
+    /* Kosher cert */
+    font-size: 0.6em;
+    margin-top: 12px;
+  }
+
+  .navbar-brand p img {
+    /* Star-K */
+    height: 20px;
+  }
+
+  #collapsable-nav a {
+    /* Collapsed nav menu text */
+    font-size: 1.2em;
+  }
+
+  #collapsable-nav a span {
+    /* Collapsed nav menu glyph */
+    font-size: 1em;
+    margin-right: 5px;
+  }
+
+  #call-btn > a {
+    font-size: 1.5em;
+    display: block;
+    margin: 0 20px;
+    padding: 10px;
+    border: 2px solid #fff;
+    background-color: #f6b319;
+    color: #951c49;
+  }
+
+  #xs-deliver {
+    margin-top: 5px;
+    font-size: 0.7em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* End Header */
+
+  /* Footer */
+  .panel-footer section {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .panel-footer section:nth-child(3) {
+    margin-bottom: 0;
+    /* margin already exists on the whole row */
+  }
+
+  .panel-footer section hr {
+    width: 50%;
+  }
+
+  /* End Footer */
+}
+
+/********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
+@media (max-width: 479px) {
+  /* Header */
+  .navbar-brand h1 {
+    /* Restaurant name */
+    padding-top: 5px;
+    font-size: 6vw;
+  }
+
+  /* End Header */
+}
+
+/* ==========================================================
+   ORDERING & CART SYSTEM (Zepto / Food App Style)
+   ========================================================== */
+
+/* Navbar Order Badge */
+#navOrderButton a {
+  position: relative;
+}
+
+#nav-list a span.badge.order-badge {
+  font-size: 11px !important;
+  background-color: #d9534f !important;
+  color: #ffffff !important;
+  border-radius: 10px;
+  padding: 2px 7px;
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+  #collapsable-nav a span.badge.order-badge {
+    position: static !important;
+    display: inline-block;
+    font-size: 12px !important;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+}
+
+/* Zepto / Food App Style Add & Stepper Control on Dish Image */
+.dish-add-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 25;
+}
+
+.food-add-btn {
+  background-color: #ffffff;
+  color: #114b3b;
+  border: 1.5px solid #114b3b;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+}
+
+.food-add-btn:hover {
+  background-color: #114b3b;
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.food-add-btn .glyphicon {
+  font-size: 10px;
+  margin-right: 4px;
+}
+
+.food-stepper {
+  display: inline-flex;
+  align-items: center;
+  background-color: #114b3b;
+  border-radius: 20px;
+  padding: 3px 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid #114b3b;
+}
+
+.stepper-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 6px;
+  outline: none;
+  font-weight: bold;
+  transition: transform 0.15s ease;
+  line-height: 1;
+}
+
+.stepper-btn:hover {
+  transform: scale(1.25);
+  color: #c89b3c;
+}
+
+.stepper-count {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 13px;
+  min-width: 20px;
+  text-align: center;
+  padding: 0 5px;
+}
+
+/* Floating Quick Order Strip (Appears when items are in cart) */
+.floating-order-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #114b3b 0%, #1d6b4e 100%);
+  color: #ffffff;
+  padding: 12px 20px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.floating-order-content {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.floating-order-info {
+  font-size: 15px;
+}
+
+.floating-order-info strong {
+  font-size: 17px;
+  color: #fff7e8;
+}
+
+.btn-view-order {
+  background-color: #c89b3c;
+  color: #114b3b;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-view-order:hover,
+.btn-view-order:focus {
+  background-color: #dfb256;
+  color: #114b3b;
+  text-decoration: none;
+  transform: scale(1.03);
+}
+
+/* Order Page Styles */
+.order-page-container {
+  padding-top: 30px;
+  padding-bottom: 70px;
+}
+
+.order-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  margin-bottom: 25px;
+  border: 1px solid #e5e5e5;
+}
+
+.order-card-title {
+  font-family: "Oxygen", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #114b3b;
+  border-bottom: 2px solid #eef2f0;
+  padding-bottom: 12px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.order-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item-info {
+  flex: 1;
+  padding-right: 15px;
+}
+
+.order-item-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.order-item-portion {
+  font-size: 12px;
+  color: #666;
+}
+
+.order-item-price {
+  font-size: 13px;
+  color: #114b3b;
+  font-weight: 600;
+}
+
+.order-item-actions {
+  display: flex;
+  align-items: center;
+}
+
+.order-item-subtotal {
+  min-width: 90px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 15px;
+  color: #114b3b;
+  margin-left: 15px;
+}
+
+.btn-item-remove {
+  background: transparent;
+  border: none;
+  color: #d9534f;
+  margin-left: 12px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.btn-item-remove:hover {
+  color: #a94442;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.bill-row.total-row {
+  border-top: 2px dashed #ddd;
+  padding-top: 14px;
+  margin-top: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #114b3b;
+}
+
+.empty-order-card {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.empty-order-icon {
+  font-size: 60px;
+  color: #c89b3c;
+  margin-bottom: 15px;
+}
+
+.order-placed-card {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.order-placed-icon {
+  font-size: 70px;
+  color: #557c3e;
+  margin-bottom: 15px;
+}

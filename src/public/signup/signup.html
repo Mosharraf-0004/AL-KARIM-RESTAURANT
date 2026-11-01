@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row">
+    <h1>Register and Sign Up For Your Favorite Dish!</h1>
+
+    <h3 ng-if="signupCtrl.saved">
+      Your information has been saved. Thank you for signing up!
+    </h3>
+
+    <div class="col-md-6">
+      <div class="form-container">
+        <form name="form" novalidate ng-if="!signupCtrl.saved">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              placeholder="First Name"
+              ng-model="signupCtrl.user.firstName"
+              required
+            />
+            <p
+              class="input-error"
+              ng-if="form.firstName.$touched && (form.firstName.$error.minlength || form.firstName.$error.required)"
+            >
+              First name is required
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+              ng-model="signupCtrl.user.lastName"
+              required
+            />
+            <p
+              class="input-error"
+              ng-if="form.lastName.$touched && (form.lastName.$error.minlength || form.lastName.$error.required)"
+            >
+              Last name is required
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              ng-model="signupCtrl.user.email"
+              required
+            />
+            <p
+              class="input-error"
+              ng-if="form.email.$touched && (form.email.$error.minlength || form.email.$error.required)"
+            >
+              Email address is required
+            </p>
+            <p
+              class="input-error"
+              ng-if="form.email.$touched && !form.email.$error.required && form.email.$invalid"
+            >
+              Must be a valid email address: handle@domain format
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="text"
+              pattern="(\d{3})-(\d{3})-(\d{4})"
+              class="form-control"
+              id="phone"
+              name="phone"
+              placeholder="Phone Number"
+              ng-model="signupCtrl.user.phone"
+              required
+            />
+            <p
+              class="input-error"
+              ng-if="form.phone.$touched && (form.phone.$error.minlength || form.phone.$error.required)"
+            >
+              Phone number is required
+            </p>
+            <p
+              class="input-error"
+              ng-if="form.phone.$touched && !form.phone.$error.required && form.phone.$invalid"
+            >
+              Phone must be in the format ###-###-####.
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="favDish">Favorite Dish (Menu Number)</label>
+            <input
+              type="text"
+              class="form-control"
+              id="favDish"
+              name="favDish"
+              required
+              placeholder="Favorite Dish (Menu Number)"
+              ng-model="signupCtrl.user.favDish"
+              ng-blur="signupCtrl.checkMenuItem(signupCtrl.user.favDish)"
+            />
+            <p
+              class="input-error"
+              ng-if="form.favDish.$touched && (form.favDish.$error.minlength || form.favDish.$error.required)"
+            >
+              Dish short name is required
+            </p>
+            <p class="input-error" ng-if="signupCtrl.invalidMenuItem">
+              No such menu number exists
+            </p>
+          </div>
+
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-default"
+              ng-disabled="form.$invalid"
+              ng-click="signupCtrl.submit()"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
